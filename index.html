@@ -5,16 +5,15 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/css.css"> <!-- Ficheiro css-->
-	<script src="js/javascript.css"></script> <!-- Ficheiro java-->
+	<script type="text/javascript" src="js/lista.js"></script><!-- Ficheiro js-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> <!-- jquery -->
 	<!-- BOOTSTRAP -->
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 	<!-- Latest compiled and minified JavaScript -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-			<!-- Latest compiled and minified CSS -->
 	<title>Index</title>
 </head>
 <body id="page">
@@ -31,23 +30,55 @@
  			</div>
  			<div class="collapse navbar-collapse" id="myNavbar">
  				<ul class="nav navbar-nav navbar-right">
- 					<li><a href="#home">casa</a></li>
+ 					<li><a href="#home">Top</a></li>
  					<li><a href="#favoritos">Favoritos</a></li>
- 				<ul class="dropdown-menu">
- 					<li><a href="#">Merchandise</a></li>
- 					<li><a href="#">Extras</a></li>
- 					<li><a href="#">Media</a></li>
+ 					<li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
  				</ul>
- 			</li>
- 		<li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
- 		</ul>
- 	</div>
+ 			</div>
  		</div>
-</nav>
+	</nav>
+	<br/><br/><br/> 
+	<input type="text" id="myInput" onkeyup="barraPesquisa()" placeholder="Digite a cripto-moeda" title="Pesquisar">  <!-- BARRA DE PESQUISA-->
+	<button type="button" class="btn btn-primary" onclick="top10()">TOP 10</button> <!-- BUTÃO TOP 10-->
+	<button type="button" class="btn btn-primary" onclick="top100()">TOP 100</button> <!-- BUTÃO TOP 100-->
+	<button type="button" class="btn btn-primary" onclick="eur()">EUR</button>
+	<button type="button" class="btn btn-primary" onclick="usd()">USD</button>
+	<!-- LISTA DE COINS-->
+	<div class="panel panel-default">
+		<div class="panel-heading">
+		  	<h3 class="panel-title">Lista de Cripto-Moedas</h3>
+		</div>
+		<div class="panel-body">		    	
+		    <div class="mediaGroup">
+				<ul class="media-list">
+					<li class="media">
+						<div class="media-left">
+							<a href="" class="thumbnail">
+							     <img class="media-object" id="image"></a>
+						</div>
+						<div class="media-body">
+						    <h4 class="title media-heading"></h4>
+						    <p>
+						    	<span class="patual"></span><br/>
+						    	<span class="marketcap"></span><br/>
+						    </p>
+						</div>
+						<div class="media-right">
+						    <p>
+						    	<h2><span class="rank"></span></h2>
+						    </p>
+						</div>
+					</li>
+				</ul>
+			   </div>
+		</div>
+	</div>
 	<footer class="text-center">
-		<a class="up-arrow" href="#page" data-toggle="tooltip" title="TO TOP">
-			<span class="glyphicon glyphicon-chevron-up"></span>
-		</a><br><br>
+		<div class="setatopo">
+			<a class="up-arrow" href="#page" data-toggle="tooltip" title="Topo da página">
+				<span class="glyphicon glyphicon-chevron-up"></span>
+			</a>
+		</div>
 		<p>Bootstrap Theme Made By <a href="https://www.w3schools.com" datatoggle="tooltip" title="Visit w3schools">www.w3schools.com</a></p>
 	</footer>
 </body>
