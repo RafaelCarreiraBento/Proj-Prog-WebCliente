@@ -18,10 +18,10 @@
 		<!--NAVBAR-->
 		<nav class="navbar navbar-default navbar-fixed-top">
 	 		<div class="container-fluid">
-	 			<div class="navbar-header">
-	 			<a class="navbar-brand" href="#">Logo</a>
-	 			</div>
 	 			<div class="collapse navbar-collapse" id="myNavbar">
+	 				<a href="https://www.ipleiria.pt/estg/">
+	 					<img id="imglogo" src="imagens/estglogo.png">
+	 				</a>
 	 				<ul class="nav navbar-nav navbar-right">
 	 					<li><a href="index.html">Top</a></li>
 	 					<li><a href="favoritos.html">Favoritos</a></li>
@@ -29,10 +29,8 @@
 	 				</ul>
 	 			</div>
 	 		</div>
-		</nav><br/><br/><br/><br/>
+		</nav>
 			<!-- DADOS -->
-		<button type="button" class="btn btn-primary" onclick="eur()">EUR</button>
-		<button type="button" class="btn btn-primary" onclick="usd()">USD</button>
 		<div class="container">
 		    <div class="row">
 		        <div class="col-md-5">
@@ -56,6 +54,8 @@
 		        </div>
 		        <!-- COLUNA DA IMAGEM -->
 		        <div class="col-md-7">
+		        	<button type="button" class="btn btn-primary" onclick="eur()">EUR</button>
+					<button type="button" class="btn btn-primary" onclick="usd()">USD</button>
 		            <img id="imagem">
 		        </div>
 		    </div>

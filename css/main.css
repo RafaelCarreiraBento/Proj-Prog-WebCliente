@@ -36,6 +36,11 @@ footer a:hover {
     margin-left: 5px;
 }
 
+#imglogo{
+  width: 200px;
+  height: 50px;
+}
+
 h1 {
     margin-left: 20px;
 }
