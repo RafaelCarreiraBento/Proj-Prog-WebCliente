@@ -63,3 +63,8 @@ body{
 b, strong {
     font-weight: 700 !important;
 }
+
+#botaofav{
+    width: 250px;
+    margin-top: 2px;
+}

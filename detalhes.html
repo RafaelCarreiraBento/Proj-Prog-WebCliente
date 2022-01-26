@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-		<title>Detalhes</title>
+		<title id="title"></title>
 	</head>
 	<body onload='pedidoAPI()'>
 		<!--NAVBAR-->
@@ -49,13 +49,13 @@
 		                <p><b>Preço mais baixo de sempre:</b> <span id="atl"></span><b> Data:</b> <span id="atl_date"></span></p>
 						<p><b>Preço mais alto nas últimas 24horas</b> <span id="high24"></span></p>
 						<p><b>Preço mais baixo nas últimas 24horas:</b> <span id="low24"></span></p>
-		                
 		            </div>
 		        </div>
 		        <!-- COLUNA DA IMAGEM -->
 		        <div class="col-md-7">
 		        	<button type="button" class="btn btn-primary" onclick="eur()">EUR</button>
 					<button type="button" class="btn btn-primary" onclick="usd()">USD</button>
+					<button type="button" class="btn btn-info" id="botaofav" onclick="addFavorito()">Adicionar aos favoritos</button>
 		            <img id="imagem">
 		        </div>
 		    </div>

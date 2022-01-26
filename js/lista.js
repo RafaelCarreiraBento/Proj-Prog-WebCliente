@@ -1,14 +1,18 @@
 var moeda ="usd";
-var simbolo="$"
-var cloneMedia = $('.media').clone();
+var simbolo="$";
+var ordem = "market_cap_desc";
+var contador=0;
 
-	//	url: "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=volume_desc&per_page=100&page=1&sparkline=false"  PEDIDO VOLUME DESC
-	//	url: "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=volume_desc&per_page=100&page=1&sparkline=false"  PEDIDO EUR VOLUME DESC
+if (contador==0){
+	var cloneMedia = $('.media').clone();
+	contador++;
+}
+
 			//FAZ O PEDIDO À API
 function pedidoAPI (){			
 	$.ajax({
 		method: "GET",
-		url: "https://api.coingecko.com/api/v3/coins/markets?vs_currency="+moeda+"&order=market_cap_desc&per_page=100&page=1&sparkline=false",
+		url: "https://api.coingecko.com/api/v3/coins/markets?vs_currency="+moeda+"&order="+ordem+"&per_page=100&page=1&sparkline=false",
 		dataType: 'json',
 
 		success: function(dados) {
@@ -20,16 +24,19 @@ function pedidoAPI (){
 function listagem(dados){		
 	$('.media-list').html('');
 	var liMedia = '';
-	//console.log(dados.id[1]);
 	dados.forEach(function(result){
-		var liMedia = cloneMedia.clone();			
-	 	$('a', liMedia).attr('href', 'detalhes.html?id='+result.id); // link quando se clica na imagem
-	 	//dados
+		var liMedia = cloneMedia.clone();		
+
+	 	$('#detail', liMedia).attr('href', 'detalhes.html?id='+result.id); // link quando se clica na imagem
+	 	//			DADOS
 		$('#image', liMedia).attr("src", result.image);
 		$('.title', liMedia).text(result.name + ' - ' + result.symbol);
 		$('.patual', liMedia).text('Preço Atual: '+result.current_price+simbolo);
 		$('.marketcap', liMedia).text('Market Cap: '+result.market_cap.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+simbolo); // separa o número por virgulas
-		$('.rank', liMedia).text('#'+result.market_cap_rank);
+		if (result.market_cap_rank != null){
+			$('.rank', liMedia).text('#'+result.market_cap_rank);
+		} 
+		else $('.rank', liMedia).text('#0');			
 		$('.media-list').append(liMedia);
 	})
 }	
@@ -76,6 +83,16 @@ function eur(){
 function usd(){
 	moeda="usd";
 	simbolo="$";
+	pedidoAPI();
+}
+
+function ordemvolume(){
+	ordem="volume_desc";
+	pedidoAPI();
+}
+
+function ordemMarketCap(){
+	ordem="market_cap_desc";
 	pedidoAPI();
 }
 

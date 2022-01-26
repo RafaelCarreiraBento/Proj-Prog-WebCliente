@@ -1,9 +1,11 @@
 var moeda ="usd";
 var simbolo ="$";
+var coin;
+var arraycoins=[];
 
 function pedidoAPI(){
 	var path = window.location.href;				// vai buscar o url
-	var coin= path. split("/").pop();				// retira os caminhos anteriores à pagina
+	coin= path. split("/").pop();				// retira os caminhos anteriores à pagina
 	coin = coin.replace('detalhes.html?id=','');	// obtém o id
 	$.ajax({
 		method: "GET",
@@ -17,7 +19,9 @@ function pedidoAPI(){
 }
 
 function detalhes(dados){	
-	$('#site').attr('href', dados.links.homepage[0]);
+	$('#title').text('Detalhes - '+dados.name)		// titulo da página
+	$('#site').attr('href', dados.links.homepage[0]);		// site da coin
+	//DETALHES DA COIN
 	$("#imagem").attr("src",dados.image.large);
 	$("#namerank").text(dados.name+'  #'+dados.market_cap_rank);
 	$("#symbol").text(dados.symbol);
@@ -44,4 +48,83 @@ function usd(){
 	moeda = "usd";
 	simbolo= "$";
 	pedidoAPI();
+}
+
+function checklocalStorage(){
+	var stringcoins;
+	if(localStorage.coin!= null){				// Verifica se existe alguma coina na localStorage
+		stringcoins=localStorage.coin;
+		arraycoins=stringcoins.split(',');		// Coloca todas as moedas do localStorage no arraycoins
+	}
+}
+
+function addFavorito(){	
+	var sair = true;
+	var jaexiste=false;
+	var i=0;
+	checklocalStorage();
+	for (var j = 0; j<arraycoins.length ; j++) {		//FOR PARA VER SE A MOEDA JÁ EXISTE NA LOCAL STORAGE
+		if (arraycoins[j]==coin) jaexiste=true; 
+	}
+	if (jaexiste==false){			//CASO N EXISTA
+		while(sair){		//	Procura o próximo espaço vazio possivel para adicionar 
+			if(arraycoins[i]==null || arraycoins[i]==''){
+				arraycoins[i]=coin;
+				sair=false;
+			} 
+			i++;
+		}
+		if (typeof(Storage) !== "undefined") {		//Adiciona moeda
+	        localStorage.coin=arraycoins;
+	        alert("Moeda adicionada com sucesso!");
+	    } else alert("Erro com a Storage!");
+	} else alert("Moeda já está nos favoritos");		//CASO EXISTA
+}
+
+function pedidoAPIFavoritos(){
+	$.ajax({
+		method: "GET",
+		url: "https://api.coingecko.com/api/v3/coins/markets?vs_currency="+moeda+"&order=market_cap_desc&per_page=100&page=1&sparkline=false",
+		dataType: 'json',
+
+		success: function(dados) {
+			listagem(dados);
+		}
+	})
+}
+
+var cloneMedia = $('.media').clone();
+
+function listagem(dados){
+	$('.media-list').html('');
+	checklocalStorage();
+	var liMedia = '';
+	for (var i = 0; i < arraycoins.length; i++) {
+		for (var j = 0;j<100;j++) {
+			if (arraycoins[i]==dados[j]["id"]) {
+				var liMedia = cloneMedia.clone();		
+
+			 	$('#detail', liMedia).attr('href', 'detalhes.html?id='+dados[j]["id"]); // link quando se clica na imagem
+			 	//			DADOS
+				$('#image', liMedia).attr("src", dados[j]["image"]);
+				$('.title', liMedia).text(dados[j]["name"] + ' - ' + dados[j]["symbol"]);
+				$('.marketcap', liMedia).text('Market Cap: '+dados[j]["market_cap"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+simbolo); // separa o número por virgulas
+				$('.rank', liMedia).text('#'+dados[j]["market_cap_rank"]);			
+				$('.media-list').append(liMedia);
+
+			}
+		}
+	}
+}
+
+function eurfav(){
+	moeda = "eur";
+	simbolo= "€";
+	pedidoAPIFavoritos();
+}
+
+function usdfav(){
+	moeda = "usd";
+	simbolo= "$";
+	pedidoAPIFavoritos();
 }

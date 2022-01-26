@@ -14,7 +14,7 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 		<title>Cripto-Moedas</title>
 	</head>
-	<body id="page" onload="pedidoAPI()">
+	<body id="page" onload="pedidoAPIFavoritos()">
 			<!--NAVBAR-->
 		<nav class="navbar navbar-default navbar-fixed-top">
 	 		<div class="container-fluid">
@@ -23,7 +23,7 @@
 	 					<img id="imglogo" src="imagens/estglogo.png">
 	 				</a>
 	 				<ul class="nav navbar-nav navbar-right">
-	 					<li><a href="#page">Top</a></li>
+	 					<li><a href="index.html">Top</a></li>
 	 					<li><a href="favoritos.html">Favoritos</a></li>
 	 				</ul>
 	 			</div>
@@ -31,12 +31,8 @@
 		</nav>
 		<br/><br/><br/> 
 		<input type="text" id="myInput" onkeyup="barraPesquisa()" placeholder="Digite a cripto-moeda" title="Pesquisar">  <!-- BARRA DE PESQUISA-->
-		<button type="button" class="btn btn-primary" onclick="top10()">TOP 10</button> <!-- BUTÃO TOP 10-->
-		<button type="button" class="btn btn-primary" onclick="top100()">TOP 100</button> <!-- BUTÃO TOP 100-->
-		<button type="button" class="btn btn-primary" onclick="eur()">EUR</button><!-- BUTÃO EURO-->
-		<button type="button" class="btn btn-primary" onclick="usd()">USD</button><!-- BUTÃO DOLAR-->
-		<button type="button" class="btn btn-primary" onclick="ordemvolume()">Ordenar por Volume</button>
-		<button type="button" class="btn btn-primary" onclick="ordemMarketCap()">Ordenar por MarketCap</button>
+		<button type="button" class="btn btn-primary" onclick="eurfav()">EUR</button><!-- BUTÃO EURO-->
+		<button type="button" class="btn btn-primary" onclick="usdfav()">USD</button><!-- BUTÃO DOLAR-->
 
 		<!-- LISTA DE COINS-->
 		<div class="panel panel-default">
@@ -56,7 +52,6 @@
 							<div class="media-body">
 							    <h4 class="title media-heading"></h4>
 							    <p>
-							    	<span class="patual"></span><br/>
 							    	<span class="marketcap"></span><br/>
 							    </p>
 							</div>
@@ -81,6 +76,6 @@
 			<h4>Made By:</h4>
 			<p>Rafael Bento<br/>Tomás Jerónimo<br/>Gabriel Sá</p>
 		</footer>
-		<script type="text/javascript" src="js/lista.js"></script><!-- Ficheiro js-->
+		<script type="text/javascript" src="js/detalhes.js"></script><!-- Ficheiro js-->
 	</body>
 </html>
