@@ -84,7 +84,7 @@ function addFavorito(){
 function pedidoAPIFavoritos(){
 	$.ajax({
 		method: "GET",
-		url: "https://api.coingecko.com/api/v3/coins/markets?vs_currency="+moeda+"&order=market_cap_desc&per_page=100&page=1&sparkline=false",
+		url: "https://api.coingecko.com/api/v3/coins/markets?vs_currency="+moeda+"&order=market_cap_desc&per_page=110&page=1&sparkline=false",
 		dataType: 'json',
 
 		success: function(dados) {
@@ -100,7 +100,7 @@ function listagem(dados){
 	checklocalStorage();
 	var liMedia = '';
 	for (var i = 0; i < arraycoins.length; i++) {
-		for (var j = 0;j<100;j++) {
+		for (var j = 0;j<dados.length;j++) {
 			if (arraycoins[i]==dados[j]["id"]) {
 				var liMedia = cloneMedia.clone();		
 

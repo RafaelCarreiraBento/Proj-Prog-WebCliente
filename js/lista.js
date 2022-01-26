@@ -26,19 +26,17 @@ function listagem(dados){
 	var liMedia = '';
 	dados.forEach(function(result){
 		var liMedia = cloneMedia.clone();		
-
-	 	$('#detail', liMedia).attr('href', 'detalhes.html?id='+result.id); // link quando se clica na imagem
-	 	$('#addFav', liMedia).attr('href', 'adicionarfav.html?id='+result.id)
-	 	//			DADOS
-		$('#image', liMedia).attr("src", result.image);
-		$('.title', liMedia).text(result.name + ' - ' + result.symbol);
-		$('.patual', liMedia).text('Preço Atual: '+result.current_price+simbolo);
-		$('.marketcap', liMedia).text('Market Cap: '+result.market_cap.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+simbolo); // separa o número por virgulas
-		if (result.market_cap_rank != null){
-			$('.rank', liMedia).text('#'+result.market_cap_rank);
-		} 
-		else $('.rank', liMedia).text('#0');			
-		$('.media-list').append(liMedia);
+		if (result.market_cap_rank <= 100&&result.market_cap_rank!= null){
+		 	$('#detail', liMedia).attr('href', 'detalhes.html?id='+result.id); // link quando se clica na imagem
+		 	$('#addFav', liMedia).attr('href', 'adicionarfav.html?id='+result.id)
+		 	//			DADOS
+			$('#image', liMedia).attr("src", result.image);
+			$('.title', liMedia).text(result.name + ' - ' + result.symbol);
+			$('.patual', liMedia).text('Preço Atual: '+result.current_price+simbolo);
+			$('.marketcap', liMedia).text('Market Cap: '+result.market_cap.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+simbolo); // separa o número por virgulas
+			$('.rank', liMedia).text('#'+result.market_cap_rank);			
+			$('.media-list').append(liMedia);
+		}
 	})
 }	
 
