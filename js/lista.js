@@ -28,6 +28,7 @@ function listagem(dados){
 		var liMedia = cloneMedia.clone();		
 
 	 	$('#detail', liMedia).attr('href', 'detalhes.html?id='+result.id); // link quando se clica na imagem
+	 	$('#addFav', liMedia).attr('href', 'adicionarfav.html?id='+result.id)
 	 	//			DADOS
 		$('#image', liMedia).attr("src", result.image);
 		$('.title', liMedia).text(result.name + ' - ' + result.symbol);
@@ -43,7 +44,7 @@ function listagem(dados){
 
 		// FILTRA AS COINS DA LISTA
 function barraPesquisa() {
-    var input = document.getElementById('myInput').value
+    var input = document.getElementById('myInput').value;
     input=input.toLowerCase();
     var li = document.getElementsByClassName('title media-heading');
     var ul = document.getElementsByClassName('media');

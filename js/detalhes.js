@@ -105,6 +105,7 @@ function listagem(dados){
 				var liMedia = cloneMedia.clone();		
 
 			 	$('#detail', liMedia).attr('href', 'detalhes.html?id='+dados[j]["id"]); // link quando se clica na imagem
+			 	$('#removeFav', liMedia).attr('href', 'removerfav.html?id='+dados[j]["id"]);
 			 	//			DADOS
 				$('#image', liMedia).attr("src", dados[j]["image"]);
 				$('.title', liMedia).text(dados[j]["name"] + ' - ' + dados[j]["symbol"]);
@@ -127,4 +128,42 @@ function usdfav(){
 	moeda = "usd";
 	simbolo= "$";
 	pedidoAPIFavoritos();
+}
+
+function barraPesquisa() {
+    var input = document.getElementById('myInput').value;
+    input=input.toLowerCase();
+    var li = document.getElementsByClassName('title media-heading');
+    var ul = document.getElementsByClassName('media');
+    for (i = 0; i < li.length; i++) { 
+        if (!li[i].innerHTML.toLowerCase().includes(input)) {
+            ul[i].style.display="none";
+        }
+        else {
+            ul[i].style.display="list-item";             
+        }
+    }
+}
+
+function removeFav(){
+	var path = window.location.href;				// vai buscar o url
+	coin= path. split("/").pop();				// retira os caminhos anteriores à pagina
+	coin = coin.replace('removerfav.html?id=','');	// obtém o id
+	checklocalStorage();
+	for (var i = 0; i < arraycoins.length; i++) {
+		if (arraycoins[i]==coin) {
+			arraycoins[i]='';	
+			localStorage.coin=arraycoins;
+	        alert("Moeda removida com sucesso!");	
+		}
+	}
+	window.location = "favoritos.html"
+}
+
+function adicionarFav(){
+	var path = window.location.href;				// vai buscar o url
+	coin= path. split("/").pop();				// retira os caminhos anteriores à pagina
+	coin = coin.replace('adicionarfav.html?id=','');	// obtém o id
+	addFavorito();
+	window.location="index.html"
 }
