@@ -73,3 +73,8 @@ h5 {
 .media-right{
     text-align: center;
 }
+
+#botaofavorito{
+   margin-top : 5px;
+   background-color: FFFFFF;
+}
